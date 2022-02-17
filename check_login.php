@@ -19,7 +19,7 @@
         include("../../params/billing.php");
         $conn = mysqli_connect($db_server,$db_user,$db_pwd,"billing");
 
-        
+        // Это уязвимо, но проблема пока отложена
         $sql = "SELECT * FROM users WHERE login='$user' AND Pwdhash='$hash' ";
         $query = mysqli_query($conn, $sql);
         $result = mysqli_fetch_all($query);
