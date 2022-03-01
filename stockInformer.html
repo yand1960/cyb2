@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя биржа</title>
+    <script>
+        function getData() {
+            var url = "http://yand.dyndns.org/api/tickers.aspx";
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET",url, false);
+            xhr.send();
+            var text = xhr.responseText;
+            //alert(text);
+            console.log(text);
+            var stockData = JSON.parse(text);
+            console.log(stockData);
+            var gazpomValue = stockData[0].value;
+            console.log(gazpomValue);
+            var now = (new Date()).toTimeString();
+            var msg = now + " Текущий курс акций GAZPOM: " + gazpomValue;
+            document.getElementById("divGazpom").innerText = msg;
+
+
+        }
+    </script>
+</head>
+<body>
+    <h1>Самый серьезный биржевой портал</h1>
+    Хочешь получить ценную инфу - щелкни кнопку
+    <button onclick="getData();">Stock data</button> 
+    <div id="divGazpom"></div>
+</body>
+</html>
